@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>小虫社区</title>
+    <title>发布-小虫社区</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="css/index.css"/>
+    <link rel="stylesheet" href="css/community.css"/>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
@@ -49,32 +49,40 @@
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-    <div class="container-fluid main">
-        <div class="row">
-            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-                <h2><span class="glyphicon glyphicon-list" aria-hidden="true"></span>发现</h2>
-                <hr>
+</nav>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
+            <hr>
 
-                <div class="media" th:each="question: ${questions}">
-                    <div class="media-left">
-                        <a href="#">
-                            <img class="media-object img-circle" th:src="${question.user.avatarUrl}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h4 class="media-heading" th:text="${question.title}"></h4>
-                        <span th:text="${question.description}"></span><br>
-                        <span class="text-desc"><span th:text="${question.commentCount}"></span>个回复 · <span th:text="${question.viewCount}"></span>次浏览 · <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}"></span></span>
-                    </div>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">问题标题（写的简单点啦）</label>
+                    <input type="text" class="form-control" th:value="${title}" id="title" name="title" placeholder="问题标题......">
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                <h3>热门话题</h3>
-                <hr>
+                <div class="form-group">
+                    <label for="description">问题补充（必填，参照右边提示）</label>
+                    <textarea name="description" th:text="${description}" id="description" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag" placeholder="输入标签，以,隔开">
+                </div>
 
-            </div>
+                <span class="alert alert-danger" th:text="${error}" th:if="${error != null}"></span>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <h3>问题发布指南</h3>
+            <hr>
+            <h5>你已经是一个成熟的程序员了，你已经拥有github账号了。</h5>
+            <h5>都会注册这种玩意的人不需要看注释也能够好好的问问题吧。</h5>
+            <h5>别再看这里了成年人，我才懒得提示你。</h5>
+            <h5>在社会上凡事就要靠自己。</h5>
         </div>
     </div>
-</nav>
+</div>
 </body>
 </html>

@@ -1,0 +1,16 @@
+body{
+    background:url(../孙笑川.jpeg);
+    background-size:5%;
+}
+.main{
+    background-color: white;
+    margin:30px;
+}
+.btn-publish{
+    float:right;
+    margin-bottom: 15px;
+}
+.media-object{
+    width: 40px;
+    height: 40px;
+}
